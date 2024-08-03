@@ -29,4 +29,5 @@ This project is the result of contributions from the following individuals:
 - [**Jiaheng Dai**](https://www.linkedin.com/in/jiaheng-dai-564454282/)
 - [**Hao-Wen Dong**](https://hermandong.com/)
 - [**Zhouhang Xie**](https://zhouhanxie.github.io/)
+- **Carol Chen**
 - [**Julian McAuley**](https://cseweb.ucsd.edu/~jmcauley/)
