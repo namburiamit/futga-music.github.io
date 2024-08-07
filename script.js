@@ -1,10 +1,10 @@
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function() {
     const songs = [
-        { jsonFile: 'json/songData1.json', songBarId: 'songBar1', captionId: 'caption1', sectionsId: 'songSections1', audioId: 'audio1' },
-        { jsonFile: 'json/songData2.json', songBarId: 'songBar2', captionId: 'caption2', sectionsId: 'songSections2', audioId: 'audio2' },
-        { jsonFile: 'json/songData3.json', songBarId: 'songBar3', captionId: 'caption3', sectionsId: 'songSections3', audioId: 'audio3' },
-        { jsonFile: 'json/songData4.json', songBarId: 'songBar4', captionId: 'caption4', sectionsId: 'songSections4', audioId: 'audio4' },
-        { jsonFile: 'json/songData5.json', songBarId: 'songBar5', captionId: 'caption5', sectionsId: 'songSections5', audioId: 'audio5' }
+        {jsonFile: 'json/songData1.json', songBarId: 'songBar1', captionId: 'caption1', sectionsId: 'songSections1', audioId: 'audio1'},
+        {jsonFile: 'json/songData2.json', songBarId: 'songBar2', captionId: 'caption2', sectionsId: 'songSections2', audioId: 'audio2'},
+        {jsonFile: 'json/songData3.json', songBarId: 'songBar3', captionId: 'caption3', sectionsId: 'songSections3', audioId: 'audio3'},
+        {jsonFile: 'json/songData4.json', songBarId: 'songBar4', captionId: 'caption4', sectionsId: 'songSections4', audioId: 'audio4'},
+        {jsonFile: 'json/songData5.json', songBarId: 'songBar5', captionId: 'caption5', sectionsId: 'songSections5', audioId: 'audio5'}
     ];
 
     songs.forEach(song => {
@@ -15,14 +15,15 @@ document.addEventListener('DOMContentLoaded', function () {
                 const songBar = document.getElementById(song.songBarId);
                 const caption = document.getElementById(song.captionId);
                 const sectionsContainer = document.getElementById(song.sectionsId);
-                let hoverTimeout;
 
-                // Display global caption initially
-                caption.innerText = songData.global.text;
-                caption.classList.add('show');
-
-                audioElement.addEventListener('loadedmetadata', function () {
+                audioElement.addEventListener('loadedmetadata', function() {
                     const totalTime = audioElement.duration;
+                    
+                    let hoverTimeout;
+
+                    // Display global caption initially
+                    caption.innerText = songData.global.text;
+                    caption.classList.add('show');
 
                     // Create song segments and section names
                     for (const key in songData) {
@@ -44,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             sectionItem.dataset.start = start;
                             sectionItem.dataset.end = end;
 
-                            const highlightSegment = function (start, end, captionText) {
+                            const highlightSegment = function(start, end, captionText) {
                                 clearTimeout(hoverTimeout);
                                 caption.innerText = captionText;
                                 caption.classList.add('show');
@@ -66,15 +67,15 @@ document.addEventListener('DOMContentLoaded', function () {
                                 songBar.scrollLeft = segment.offsetLeft - songBar.offsetLeft;
                             };
 
-                            sectionItem.addEventListener('click', function () {
+                            sectionItem.addEventListener('click', function() {
                                 highlightSegment(start, end, segment.dataset.caption);
                             });
 
-                            segment.addEventListener('click', function () {
+                            segment.addEventListener('click', function() {
                                 highlightSegment(start, end, segment.dataset.caption);
                             });
 
-                            segment.addEventListener('mouseover', function () {
+                            segment.addEventListener('mouseover', function() {
                                 clearTimeout(hoverTimeout);
                                 hoverTimeout = setTimeout(() => {
                                     caption.innerText = this.dataset.caption;
@@ -82,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                 }, 300); // Add delay before showing caption
                             });
 
-                            segment.addEventListener('mouseout', function () {
+                            segment.addEventListener('mouseout', function() {
                                 clearTimeout(hoverTimeout);
                                 caption.innerText = songData.global.text;
                                 caption.classList.add('show');
@@ -94,7 +95,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     }
 
                     // Restore global caption when clicking outside the song bar
-                    document.addEventListener('click', function (event) {
+                    document.addEventListener('click', function(event) {
                         if (!songBar.contains(event.target) && !sectionsContainer.contains(event.target)) {
                             caption.innerText = songData.global.text;
                             caption.classList.add('show');
@@ -107,10 +108,12 @@ document.addEventListener('DOMContentLoaded', function () {
                         }
                     });
 
-                    songBar.addEventListener('click', function (event) {
+                    songBar.addEventListener('click', function(event) {
                         event.stopPropagation();
                     });
                 });
+
+                audioElement.load(); // Ensure the audio metadata is loaded
             })
             .catch(error => console.error('Error loading song data:', error));
     });

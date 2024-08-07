@@ -23,11 +23,13 @@ h3 {
     margin: 0 auto 20px;
     padding-top: 20px;
 }
+
 .container {
     max-width: 1200px;
     margin: auto;
     padding: 20px;
 }
+
 .header,
 .content {
     background: #fff;
@@ -97,10 +99,12 @@ h3 {
 }
 
 .audio-container {
-    margin-bottom: 40px;
     position: relative;
     width: 100%;
+    margin-bottom: 20px;
+    /* Add spacing below the audio player */
 }
+
 .song-layout {
     display: flex;
     align-items: center;
