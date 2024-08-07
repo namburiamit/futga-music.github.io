@@ -16,6 +16,13 @@ h3 {
     text-align: center;
 }
 
+.header-image {
+    max-width: 250px;
+    height: auto;
+    display: block;
+    margin: 0 auto 20px;
+    padding-top: 20px;
+}
 .container {
     max-width: 1200px;
     margin: auto;
@@ -207,17 +214,18 @@ h3 {
 
 .copy-button {
     position: absolute;
-    top: 20px;
+    top: 10px;
     right: 20px;
     padding: 5px 10px;
-    font-size: 14px;
-    color: #fff;
-    background-color: #007bff;
-    border: none;
+    background: #fff;
+    color: #333;
+    text-decoration: none;
+    border: 2px solid #333;
     border-radius: 5px;
-    cursor: pointer;
+    transition: background 0.3s, color 0.3s;
 }
 
 .copy-button:hover {
-    background-color: #0056b3;
+    background: #333;
+    color: #fff;
 }
